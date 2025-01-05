@@ -69,8 +69,8 @@ public class Project05 {
     }
 
     public static void book(char column, int row) {
-        if (!theater[row][column - 64]) {
-            theater[row][column - 64] = true;
+        if (!theater[row - 1][column - 65]) {
+            theater[row - 1][column - 65] = true;
             System.out.println("Reservation made for seat " + column + row);
         } else {
             System.out.println("Seat already reserved. Please choose another.");
@@ -78,8 +78,8 @@ public class Project05 {
     }
 
     public static void cancel(char column, int row) {
-        if(theater[row][column - 64]) {
-            theater[row][column - 64] = false;
+        if(theater[row - 1][column - 65]) {
+            theater[row - 1][column - 65] = false;
             System.out.println("Cancelation for seat " + column + row + " successful.");
         } else {
             System.out.println("Seat is not already reserved.");
