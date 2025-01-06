@@ -8,6 +8,7 @@ public class Project03 {
 
         int[][] arr = new int[128][2];
         String line;
+        int positionRow = 0;
 
         try(BufferedReader charFile = new BufferedReader( new FileReader("C:/Users/Despoina/tmp/characters.txt"))) {
             while((line = charFile.readLine()) != null) {
@@ -16,17 +17,45 @@ public class Project03 {
                     if(!isCharInArray(c[i], arr)) {
                         arr[i][0] = c[i];
                         arr[i][1]++;
+                    } else {
+                        positionRow = positionOfChar(c[i], arr);
+                        arr[positionRow][1]++;
                     }
                 }
+            }
+
+            for(int i = 0; i < 128; i++) {
+                for (int j = 0; j < 2; j++) {
+                    System.out.print(arr[i][j] + " ");
+                }
+                System.out.println();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public static int positionOfChar(char c, int[][] arr) {
+        int positionRow = 0;
+
+        for (int i = 0; i < 128; i++) {
+           if (arr[i][0] == c) {
+               positionRow = i;
+           }
+        }
+
+        return positionRow;
+    }
+
     public static boolean isCharInArray(char c, int[][] arr) {
         boolean isCharInArray = false;
 
+        for(int i = 0; i < 128; i++) {
+            if (arr[i][0] == c) {
+                isCharInArray = true;
+                break;
+            }
+        }
 
         return isCharInArray;
     }
