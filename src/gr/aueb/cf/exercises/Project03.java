@@ -1,12 +1,24 @@
 package gr.aueb.cf.exercises;
 
 import java.io.*;
+import java.util.Arrays;
+
+/**
+ * Reads characters from a file,
+ * saves them on an array and
+ * counts how many times they appear.
+ * Then, it sorts the array according
+ * to the characters and according to
+ * their frequency.
+ */
 
 public class Project03 {
 
     public static void main(String[] args) {
 
         int[][] arr = new int[128][2];
+        int[][] arrSortedByChar;
+        int[][] arrSortedByFrequency;
         String line;
         int positionRow = 0;
 
@@ -14,7 +26,7 @@ public class Project03 {
             while((line = charFile.readLine()) != null) {
                 char[] c = line.toCharArray();
                 for (int i = 0; i < c.length; i++) {
-                    if(!isCharInArray(c[i], arr)) {
+                    if(!isCharInArray(c[i], arr) && c[i] != ' ') {
                         arr[i][0] = c[i];
                         arr[i][1]++;
                     } else {
@@ -25,14 +37,21 @@ public class Project03 {
             }
 
             for(int i = 0; i < 128; i++) {
-                for (int j = 0; j < 2; j++) {
-                    System.out.print(arr[i][j] + " ");
-                }
-                System.out.println();
+                System.out.println((char)arr[i][0] + " " + arr[i][1]);
             }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void sortByChar(int[][] arr) {
+
+    }
+
+    public static void sortByFrequency(int[][] arr) {
+
     }
 
     public static int positionOfChar(char c, int[][] arr) {
